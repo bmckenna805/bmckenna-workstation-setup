@@ -1,0 +1,36 @@
+---
+- name: Configure Workstation
+  hosts: 127.0.0.1
+  connection: local
+  become: yes
+
+  tasks:
+    - name: install the latest version of favorite tools
+      dnf:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - rednotebook
+        - vim-common
+        - flameshot
+        - keepass
+        - terminator
+        - python3
+        - python2
+        - pylint
+        - python3-pylint
+        - yamllint
+        - lastpass-cli
+        - golang
+        - chrome-gnome-shell
+
+    - name: install supporting packages for team tools
+      dnf:
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - python2-devel
+        - python3-devel
+        - redhat-rpm-config
+        - python-virtualenv
+        - python3-virtualenv
